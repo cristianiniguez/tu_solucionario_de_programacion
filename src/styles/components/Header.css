@@ -1,0 +1,44 @@
+.Header {
+  background-color: var(--black);
+  color: var(--white);
+  padding: 0 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 60px;
+}
+
+.Header__link {
+  height: 80%;
+  align-self: center;
+}
+
+.Header__image {
+  height: 100%;
+}
+
+.Header__navbar ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.Header__navbar li {
+  height: 100%;
+  display: flex;
+}
+
+.Header__navbar a {
+  display: flex;
+  align-items: center;
+  padding: 0 1em;
+  text-decoration: none;
+  color: currentColor;
+  opacity: 0.5;
+}
+
+.Header__navbar a:hover {
+  opacity: 1;
+}
