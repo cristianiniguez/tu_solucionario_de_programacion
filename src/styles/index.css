@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap');
+
 :root {
   --black: #212121;
   --white: white;
+  --gray: gray;
   --blue: #003ea2;
   --yellow: #cece00;
   --red: #bf0000;
@@ -16,5 +19,28 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: 'Source Code Pro', monospace;
+}
+
+.text--red {
+  color: var(--red);
+}
+
+.text--blue {
+  color: var(--blue);
+}
+
+.text--yellow {
+  color: var(--yellow);
+}
+
+.text--green {
+  color: var(--green);
+}
+
+@media screen and (min-width: 480px) {
+}
+@media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 1024px) {
 }
