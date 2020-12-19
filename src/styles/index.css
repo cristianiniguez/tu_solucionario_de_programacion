@@ -18,8 +18,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
 code {
   font-family: 'Source Code Pro', monospace;
+}
+
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
 }
 
 .text--red {
