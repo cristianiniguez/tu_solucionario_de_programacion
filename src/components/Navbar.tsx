@@ -7,7 +7,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import '../styles/components/Navbar.css';
 
 const Navbar = () => {
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState<boolean>(false);
 
   return (
     <nav className={classNames('Navbar', { 'Navbar--active': active })}>
