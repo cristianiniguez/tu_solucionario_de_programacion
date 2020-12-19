@@ -1,0 +1,14 @@
+.Hero {
+  --hero-shadow: rgba(0, 0, 0, 0.5);
+  color: var(--gray);
+  text-align: center;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Hero__title {
+  font-size: 2em;
+}
