@@ -1,7 +1,9 @@
+import { FunctionComponent } from 'react';
+
 import '../styles/components/Hero.css';
 import herobg from '../assets/hero.jpg';
 
-const Hero = () => {
+const Hero: FunctionComponent = () => {
   return (
     <section
       className='Hero'

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FunctionComponent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,7 +6,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 import '../styles/components/Navbar.css';
 
-const Navbar = () => {
+const Navbar: FunctionComponent = () => {
   const [active, setActive] = useState<boolean>(false);
 
   return (

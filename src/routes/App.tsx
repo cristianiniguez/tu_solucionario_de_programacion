@@ -1,10 +1,11 @@
+import { FunctionComponent } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Layout from '../components/Layout';
 import Home from '../pages/Home';
 import NotFound from '../pages/NotFound';
 
-const App = () => (
+const App: FunctionComponent = () => (
   <BrowserRouter>
     <Layout>
       <Switch>

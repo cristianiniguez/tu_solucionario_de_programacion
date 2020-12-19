@@ -1,10 +1,11 @@
+import { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 
 import '../styles/components/Header.css';
 import logo from '../assets/logo.png';
 
-const Header = () => {
+const Header: FunctionComponent = () => {
   return (
     <header className='Header'>
       <Link className='Header__link' to='/'>
