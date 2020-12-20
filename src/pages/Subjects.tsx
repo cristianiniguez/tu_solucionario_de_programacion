@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react';
 import '../styles/pages/Subjects.css';
 
+import SubjectLink from '../components/SubjectLink';
 import { subjects } from '../data/subjects';
 
 const Subjects: FunctionComponent = () => {
@@ -9,11 +10,8 @@ const Subjects: FunctionComponent = () => {
       <div className='container'>
         <h1 className='Subjects__title'>Todas nuestras materias</h1>
         <div className='Subjects__grid'>
-          {subjects.map(({ id, name, description }) => (
-            <div className='Subject' key={id}>
-              <h3>{name}</h3>
-              <p>{description}</p>
-            </div>
+          {subjects.map((subject) => (
+            <SubjectLink subject={subject} key={subject.id} />
           ))}
         </div>
       </div>

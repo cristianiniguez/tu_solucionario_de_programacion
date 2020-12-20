@@ -7,15 +7,15 @@ import { Subject } from '../data/subjects';
 import '../styles/components/HomeSubject.css';
 
 type HomeSubjectContainerProps = {
-  bgColor: string;
-  textColor: string;
+  bgcolor: string;
+  textcolor: string;
 };
 
 const HomeSubjectContainer = styled(Link)<HomeSubjectContainerProps>`
   &:hover {
-    background-color: ${(props) => props.bgColor};
-    color: ${(props) => props.textColor};
-    border-color: ${(props) => props.bgColor};
+    background-color: ${(props) => props.bgcolor};
+    color: ${(props) => props.textcolor};
+    border-color: ${(props) => props.bgcolor};
   }
 `;
 
@@ -26,8 +26,8 @@ type HomeSubjectProps = {
 const HomeSubject: FunctionComponent<HomeSubjectProps> = ({ subject }) => {
   return (
     <HomeSubjectContainer
-      bgColor={subject.brandColor}
-      textColor={subject.textColor}
+      bgcolor={subject.brandColor}
+      textcolor={subject.textColor}
       className='HomeSubject'
       to={`/subjects/${subject.endpoint}`}
     >
