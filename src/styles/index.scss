@@ -33,20 +33,22 @@ code {
   margin: 0 auto;
 }
 
-.text--red {
-  color: var(--red);
-}
+.text {
+  &--red {
+    color: var(--red);
+  }
 
-.text--blue {
-  color: var(--blue);
-}
+  &--blue {
+    color: var(--blue);
+  }
 
-.text--yellow {
-  color: var(--yellow);
-}
+  &--yellow {
+    color: var(--yellow);
+  }
 
-.text--green {
-  color: var(--green);
+  &--green {
+    color: var(--green);
+  }
 }
 
 @media screen and (min-width: 480px) {

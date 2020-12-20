@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Subject } from '../data/subjects';
 
-import '../styles/components/HomeSubject.css';
+import '../styles/components/HomeSubject.scss';
 
 type HomeSubjectContainerProps = {
   bgcolor: string;

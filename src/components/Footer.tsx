@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import '../styles/components/Footer.css';
+import '../styles/components/Footer.scss';
 
 const Footer: FunctionComponent = () => {
   return (

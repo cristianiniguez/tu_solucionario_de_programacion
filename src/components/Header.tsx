@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 
-import '../styles/components/Header.css';
+import '../styles/components/Header.scss';
 import logo from '../assets/logo.png';
 
 const Header: FunctionComponent = () => {

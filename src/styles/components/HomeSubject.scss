@@ -5,12 +5,13 @@
   padding: 1em;
   display: flex;
   align-items: center;
-}
 
-.HomeSubject__icon {
-  font-size: 2em;
-}
+  &__icon {
+    font-size: 2em;
+  }
 
-.HomeSubject__label {
-  margin: 0 0 0 1em;
+  &__label {
+    margin-left: 1em;
+    flex-grow: 1;
+  }
 }

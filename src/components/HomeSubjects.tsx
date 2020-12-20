@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 
 import HomeSubject from './HomeSubject';
 import { subjects } from '../data/subjects';
-import '../styles/components/HomeSubjects.css';
+import '../styles/components/HomeSubjects.scss';
 
 const HomeSubjects: FunctionComponent = () => {
   return (

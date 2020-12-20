@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 
 import Header from './Header';
 import Footer from './Footer';
-import '../styles/components/Layout.css';
+import '../styles/components/Layout.scss';
 
 const Layout: FunctionComponent = ({ children }) => {
   return (

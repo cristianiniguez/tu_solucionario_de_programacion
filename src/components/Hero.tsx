@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 
-import '../styles/components/Hero.css';
+import '../styles/components/Hero.scss';
 import herobg from '../assets/hero.jpg';
 
 const Hero: FunctionComponent = () => {

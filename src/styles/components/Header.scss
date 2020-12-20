@@ -7,13 +7,13 @@
   justify-content: space-between;
   align-items: stretch;
   height: 60px;
-}
 
-.Header__link {
-  align-self: center;
-  height: 80%;
-}
+  &__link {
+    align-self: center;
+    height: 80%;
+  }
 
-.Header__image {
-  height: 100%;
+  &__image {
+    height: 100%;
+  }
 }

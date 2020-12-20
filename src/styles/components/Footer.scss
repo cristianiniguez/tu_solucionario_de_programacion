@@ -1,0 +1,10 @@
+.Footer {
+  background-color: var(--black);
+  color: var(--white);
+  text-align: center;
+  padding: 1em;
+
+  a:hover {
+    text-decoration: underline;
+  }
+}

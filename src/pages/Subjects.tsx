@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import '../styles/pages/Subjects.css';
+import '../styles/pages/Subjects.scss';
 
 import SubjectLink from '../components/SubjectLink';
 import { subjects } from '../data/subjects';
