@@ -1,0 +1,19 @@
+.Subject {
+  &__hero {
+    background-color: var(--light-gray);
+  }
+
+  &__hero-container {
+    padding: 2em;
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    font-size: 6em;
+  }
+
+  &__info {
+    margin-left: 1em;
+  }
+}
