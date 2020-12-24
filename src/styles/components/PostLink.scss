@@ -1,0 +1,26 @@
+.PostLink {
+  color: var(--gray);
+  border: 1px solid var(--gray);
+  border-radius: 0.5em;
+  padding: 0 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__title {
+    font-weight: bold;
+  }
+
+  &__icon {
+    display: none;
+  }
+
+  &:hover {
+    border-color: var(--first-color);
+    color: var(--first-color);
+  }
+
+  &:hover &__icon {
+    display: block;
+  }
+}

@@ -1,6 +1,7 @@
 .Subject {
   &__hero {
     background-color: var(--light-gray);
+    border-bottom: 1px solid var(--gray);
   }
 
   &__hero-container {
@@ -15,5 +16,27 @@
 
   &__info {
     margin-left: 1em;
+  }
+
+  &__posts-container {
+    padding: 1em 2em;
+  }
+
+  &__posts-grid {
+    @media screen and (min-width: 768px) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1em;
+    }
+  }
+
+  &__message {
+    text-align: center;
+    font-weight: bold;
+    background-color: var(--light-gray);
+    margin: 2em 0;
+    border: 1px dashed var(--gray);
+    border-radius: 1em;
+    padding: 1em;
   }
 }
