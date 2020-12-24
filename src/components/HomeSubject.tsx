@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Subject } from '../data/subjects';
+import { ISubject } from '../data/subjects';
 
 import '../styles/components/HomeSubject.scss';
 
@@ -20,7 +20,7 @@ const HomeSubjectContainer = styled(Link)<HomeSubjectContainerProps>`
 `;
 
 type HomeSubjectProps = {
-  subject: Subject;
+  subject: ISubject;
 };
 
 const HomeSubject: FunctionComponent<HomeSubjectProps> = ({ subject }) => {

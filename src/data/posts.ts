@@ -1,12 +1,12 @@
-export interface Post {
+export interface IPost {
   NO_ID_FIELD: string;
   title: string;
   description: string;
   subject: string;
-  pages: Page[];
+  pages: IPage[];
 }
 
-export interface Page {
+export interface IPage {
   title: string;
   content: string;
 }

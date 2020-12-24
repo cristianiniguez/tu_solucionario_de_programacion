@@ -1,6 +1,6 @@
 import { faHtml5, faCss3Alt, faJs, IconDefinition } from '@fortawesome/free-brands-svg-icons';
 
-export interface Subject {
+export interface ISubject {
   id: string;
   endpoint: string;
   name: string;
@@ -10,7 +10,7 @@ export interface Subject {
   textColor: string;
 }
 
-export const subjects: Subject[] = [
+export const subjects: ISubject[] = [
   {
     id: 'S001',
     endpoint: 'html',

@@ -9,7 +9,7 @@ import Fatal from '../components/Fatal';
 import NotFound from './NotFound';
 
 import { subjects } from '../data/subjects';
-import { Post } from '../data/posts';
+import { IPost } from '../data/posts';
 import '../styles/pages/Subject.scss';
 
 type TParams = {
@@ -19,7 +19,7 @@ type TParams = {
 const Subject = ({ match }: RouteComponentProps<TParams>) => {
   const matchedSubject = subjects.find((sub) => sub.endpoint === match.params.endpoint);
   const postsRef = useFirestore().collection('posts').where('subject', '==', match.params.endpoint);
-  const { data, status, error } = useFirestoreCollectionData<Post>(postsRef);
+  const { data, status, error } = useFirestoreCollectionData<IPost>(postsRef);
 
   if (!matchedSubject) return <NotFound />;
   if (status === 'loading') return <Spinner />;

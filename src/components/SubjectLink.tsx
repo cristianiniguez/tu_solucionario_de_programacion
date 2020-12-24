@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { Subject } from '../data/subjects';
+import { ISubject } from '../data/subjects';
 import '../styles/components/SubjectLink.scss';
 
 type SubjectLinkContainerProps = {
@@ -15,7 +15,7 @@ const SubjectLinkContainer = styled.div<SubjectLinkContainerProps>`
 `;
 
 type SubjectLinkProps = {
-  subject: Subject;
+  subject: ISubject;
 };
 
 const SubjectLink: FunctionComponent<SubjectLinkProps> = ({ subject }) => {
