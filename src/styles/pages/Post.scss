@@ -1,0 +1,61 @@
+.Post {
+  &__hero {
+    padding: 1em 2em;
+  }
+
+  &__path {
+    font-size: 1.5em;
+
+    code {
+      font-weight: bold;
+    }
+  }
+
+  &__subject {
+    color: var(--gray);
+
+    &:hover {
+      color: var(--black);
+      text-decoration: underline;
+    }
+  }
+
+  &__pages {
+    background-color: var(--light-gray);
+    border: 1px solid var(--gray);
+    border-radius: 0.5em;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+
+    & li {
+      border-bottom: 1px solid var(--gray);
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+
+      & a {
+        color: var(--gray);
+        padding: 1em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        & svg {
+          display: none;
+        }
+
+        &:hover {
+          color: initial;
+          background-color: var(--white);
+
+          svg {
+            display: initial;
+          }
+        }
+      }
+    }
+  }
+}
