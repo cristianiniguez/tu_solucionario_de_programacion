@@ -1,13 +1,13 @@
+import { useContext } from 'react';
 import { RouteComponentProps, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import Markdown from 'markdown-to-jsx';
-import { useFirestore, useFirestoreDocData } from 'reactfire';
-import 'firebase/firestore';
 
-import { IPost } from '../data/posts';
+import { PostsContext } from '../context/PostsContext';
 import Spinner from '../components/Spinner';
 import Fatal from '../components/Fatal';
+import NotFound from './NotFound';
 import '../styles/pages/Post.scss';
 
 type TParams = {
@@ -16,27 +16,28 @@ type TParams = {
 
 const Post = ({ match }: RouteComponentProps<TParams>) => {
   const postId = match.params.id;
-
-  const postRef = useFirestore().collection('posts').doc(postId);
-  const { data, status, error } = useFirestoreDocData<IPost>(postRef);
+  const { data, status, error } = useContext(PostsContext)();
 
   if (status === 'loading') return <Spinner />;
   if (error) return <Fatal error={error} />;
+
+  const matchedPost = data.find((post) => post.NO_ID_FIELD === postId);
+  if (!matchedPost) return <NotFound />;
 
   return (
     <div className='Post'>
       <section className='Post__hero'>
         <div className='container'>
           <p className='Post__path'>
-            <Link className='Post__subject' to={`/subjects/${data.subject}`}>
-              <code>{data.subject.toUpperCase()}</code>
+            <Link className='Post__subject' to={`/subjects/${matchedPost.subject}`}>
+              <code>{matchedPost.subject.toUpperCase()}</code>
             </Link>
             {' > '}
-            <code className='Post__title'>{data.title}</code>
+            <code className='Post__title'>{matchedPost.title}</code>
           </p>
-          <p>{data.description}</p>
+          <p>{matchedPost.description}</p>
           <ul className='Post__pages'>
-            {data.pages.map((page, i) => (
+            {matchedPost.pages.map((page, i) => (
               <li key={i}>
                 <Link to={`/post/${postId}/${i}`}>
                   <Markdown>{page.title}</Markdown>

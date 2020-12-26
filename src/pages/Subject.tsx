@@ -1,15 +1,14 @@
+import { useContext } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useFirestore, useFirestoreCollectionData } from 'reactfire';
-import 'firebase/firestore';
 
+import { PostsContext } from '../context/PostsContext';
 import PostLink from '../components/PostLink';
 import Spinner from '../components/Spinner';
 import Fatal from '../components/Fatal';
 import NotFound from './NotFound';
 
 import { subjects } from '../data/subjects';
-import { IPost } from '../data/posts';
 import '../styles/pages/Subject.scss';
 
 type TParams = {
@@ -18,8 +17,7 @@ type TParams = {
 
 const Subject = ({ match }: RouteComponentProps<TParams>) => {
   const matchedSubject = subjects.find((sub) => sub.endpoint === match.params.endpoint);
-  const postsRef = useFirestore().collection('posts').where('subject', '==', match.params.endpoint);
-  const { data, status, error } = useFirestoreCollectionData<IPost>(postsRef);
+  const { data, status, error } = useContext(PostsContext)();
 
   if (!matchedSubject) return <NotFound />;
   if (status === 'loading') return <Spinner />;
