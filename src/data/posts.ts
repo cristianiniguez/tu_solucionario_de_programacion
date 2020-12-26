@@ -8,5 +8,5 @@ export interface IPost {
 
 export interface IPage {
   title: string;
-  content: string;
+  path: string;
 }
