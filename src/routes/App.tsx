@@ -7,6 +7,7 @@ import Subjects from '../pages/Subjects';
 import Subject from '../pages/Subject';
 import Post from '../pages/Post';
 import Page from '../pages/Page';
+import Search from '../pages/Search';
 import NotFound from '../pages/NotFound';
 
 import PostsContextProvider from '../context/PostsContext';
@@ -21,6 +22,7 @@ const App: FunctionComponent = () => (
           <Route exact path='/subjects/:endpoint' component={Subject} />
           <Route exact path='/post/:id' component={Post} />
           <Route exact path='/post/:postId/:pageIndex' component={Page} />
+          <Route exact path='/search/:input' component={Search} />
           <Route component={NotFound} />
         </Switch>
       </Layout>

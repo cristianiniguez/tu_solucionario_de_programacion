@@ -42,3 +42,8 @@ export const subjects: ISubject[] = [
     textColor: 'var(--black)',
   },
 ];
+
+export function getSubjectByEndpoint(endpoint: string): ISubject | undefined {
+  const matchedSubject = subjects.find((subject) => subject.endpoint === endpoint);
+  return matchedSubject;
+}

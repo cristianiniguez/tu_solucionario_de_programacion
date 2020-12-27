@@ -1,5 +1,5 @@
-import { useState, useContext, useEffect, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useContext, useEffect, useMemo, FormEvent } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,6 +11,7 @@ const Searchbox = () => {
   const [input, setInput] = useState('');
   const [results, setResults] = useState<IPost[]>([]);
   const { data: postsData, status, error } = useContext(PostsContext)();
+  const history = useHistory();
 
   const filteredPosts = useMemo(() => {
     return postsData?.filter((post) => post.title.match(new RegExp(input, 'i'))) || [];
@@ -20,8 +21,14 @@ const Searchbox = () => {
     setResults(input ? filteredPosts : []);
   }, [input, filteredPosts]);
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    history.push(`/search/${input}`);
+    setInput('');
+  };
+
   return (
-    <div className='Searchbox'>
+    <form className='Searchbox' onSubmit={handleSubmit}>
       <div className='Searchbox__input'>
         <input
           type='text'
@@ -37,8 +44,8 @@ const Searchbox = () => {
         )}
       </div>
       <button
-        type='button'
-        disabled={status === 'loading' || !!error}
+        type='submit'
+        disabled={status === 'loading' || !!error || !input}
         className='Searchbox__button'
       >
         <FontAwesomeIcon icon={faSearch} />
@@ -61,7 +68,7 @@ const Searchbox = () => {
           ))}
         </div>
       )}
-    </div>
+    </form>
   );
 };
 
