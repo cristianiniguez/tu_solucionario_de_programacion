@@ -62,7 +62,9 @@ const Page = ({ match }: RouteComponentProps<TParams>) => {
         </ol>
       </aside>
       <section className='Page__section'>
-        <PageContent pagePath={matchedPage.path} language={matchedPost.subject} />
+        <div className='container'>
+          <PageContent pagePath={matchedPage.path} language={matchedPost.subject} />
+        </div>
       </section>
     </div>
   );

@@ -26,27 +26,29 @@ const Search = ({ match }: RouteComponentProps<TParams>) => {
 
   return (
     <div className='Search'>
-      {filteredPosts.length > 0 ? (
-        <>
-          <h1>
-            Resultados para <span className='text--red'>{input}</span>
-          </h1>
-          <div className='Search__posts'>
-            {filteredPosts.map((post) => (
-              <PostLink
-                key={post.NO_ID_FIELD}
-                post={post}
-                firstcolor={getSubjectByEndpoint(post.subject)?.brandColor || '#000'}
-              />
-            ))}
-          </div>
-        </>
-      ) : (
-        <>
-          <h1>No hay resultados</h1>
-          <Link to='/'>Ir al Home</Link>
-        </>
-      )}
+      <div className='container'>
+        {filteredPosts.length > 0 ? (
+          <>
+            <h1>
+              Resultados para <span className='text--red'>{input}</span>
+            </h1>
+            <div className='Search__posts'>
+              {filteredPosts.map((post) => (
+                <PostLink
+                  key={post.NO_ID_FIELD}
+                  post={post}
+                  firstcolor={getSubjectByEndpoint(post.subject)?.brandColor || '#000'}
+                />
+              ))}
+            </div>
+          </>
+        ) : (
+          <>
+            <h1>No hay resultados</h1>
+            <Link to='/'>Ir al Home</Link>
+          </>
+        )}
+      </div>
     </div>
   );
 };
