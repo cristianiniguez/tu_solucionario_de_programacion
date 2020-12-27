@@ -1,10 +1,7 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import Markdown from 'markdown-to-jsx';
 import classnames from 'classnames';
-import axios from 'axios';
-import { useStorage } from 'reactfire';
-import 'firebase/storage';
 
 import PageContent from '../components/PageContent';
 import Spinner from '../components/Spinner';
@@ -21,27 +18,15 @@ type TParams = {
 
 const Page = ({ match }: RouteComponentProps<TParams>) => {
   const { postId, pageIndex } = match.params;
-
-  const [content, setContent] = useState('');
-  const storage = useStorage();
-
-  const { data, status, error } = useContext(PostsContext)();
+  const { data: postsData, status, error } = useContext(PostsContext)();
 
   if (status === 'loading') return <Spinner />;
   if (error) return <Fatal error={error} />;
 
-  const matchedPost = data.find((post) => post.NO_ID_FIELD === postId);
-  if (!matchedPost) return <NotFound />;
+  const matchedPost = postsData?.find((post) => post.NO_ID_FIELD === postId);
+  const matchedPage = matchedPost?.pages[parseInt(pageIndex)];
 
-  const matchedPage = matchedPost.pages[parseInt(pageIndex)];
-  if (!matchedPage) return <NotFound />;
-
-  storage
-    .ref(matchedPage.path)
-    .getDownloadURL()
-    .then(axios)
-    .then(({ data }) => setContent(data))
-    .catch(console.error);
+  if (!matchedPost || !matchedPage) return <NotFound />;
 
   return (
     <div className='Page'>
@@ -66,7 +51,7 @@ const Page = ({ match }: RouteComponentProps<TParams>) => {
         </ol>
       </aside>
       <section className='Page__section'>
-        <PageContent content={content} language={matchedPost.subject} />
+        <PageContent pagePath={matchedPage.path} language={matchedPost.subject} />
       </section>
     </div>
   );
