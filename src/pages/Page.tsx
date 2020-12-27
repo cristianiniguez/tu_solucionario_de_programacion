@@ -1,5 +1,7 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import Markdown from 'markdown-to-jsx';
 import classnames from 'classnames';
 
@@ -17,6 +19,8 @@ type TParams = {
 };
 
 const Page = ({ match }: RouteComponentProps<TParams>) => {
+  const [shown, setShown] = useState<boolean>(false);
+
   const { postId, pageIndex } = match.params;
   const { data: postsData, status, error } = useContext(PostsContext)();
 
@@ -29,11 +33,18 @@ const Page = ({ match }: RouteComponentProps<TParams>) => {
   if (!matchedPost || !matchedPage) return <NotFound />;
 
   return (
-    <div className='Page'>
+    <div className={classnames({ Page: true, 'Page--shown': shown })}>
       <aside className='Page__aside'>
-        <Link className='Page__post-title' to={`/post/${matchedPost.NO_ID_FIELD}`}>
-          {matchedPost.title}
-        </Link>
+        <div className='Page__controls'>
+          <Link className='Page__post-title' to={`/post/${matchedPost.NO_ID_FIELD}`}>
+            {matchedPost.title}
+          </Link>
+          <FontAwesomeIcon
+            className='Page__icon'
+            icon={shown ? faArrowLeft : faArrowRight}
+            onClick={() => setShown(!shown)}
+          />
+        </div>
         <ol className='Page__tablist'>
           {matchedPost.pages.map((page, i) => (
             <li
@@ -44,7 +55,7 @@ const Page = ({ match }: RouteComponentProps<TParams>) => {
               })}
             >
               <Link to={`/post/${postId}/${i}`}>
-                <Markdown>{page.title}</Markdown>
+                {shown ? <Markdown>{page.title}</Markdown> : <span>{i}</span>}
               </Link>
             </li>
           ))}
