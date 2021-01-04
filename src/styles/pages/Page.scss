@@ -6,8 +6,8 @@
 
   &__aside {
     text-align: center;
-    background-color: var(--light-gray);
     border-right: 1px solid var(--gray);
+    box-shadow: 1px 0 1px rgba(0, 0, 0, 0.3);
   }
 
   &__controls {
@@ -21,6 +21,7 @@
 
   &__post-title {
     display: none;
+    text-align: left;
   }
 
   &__icon {
@@ -34,21 +35,23 @@
   }
 
   &__tab {
+    padding: 1em 0;
     display: flex;
-    flex-direction: column;
-    // justify-content: stretch;
+    justify-content: center;
 
     a {
-      display: inline-block;
-      padding: 1em;
+      width: 32px;
+      height: 32px;
+      background-color: var(--light-gray);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    &--active {
-      background-color: var(--white);
-      font-weight: bold;
-      border-style: solid;
-      border-color: var(--gray);
-      border-width: 1px 0;
+    &--active a {
+      background-color: var(--black);
     }
   }
 
@@ -70,5 +73,23 @@
 
   &--shown &__post-title {
     display: block;
+  }
+
+  &--shown &__tab {
+    justify-content: start;
+    padding: 1em;
+
+    a {
+      width: unset;
+      height: unset;
+      border-radius: 0;
+      background-color: transparent;
+      color: var(--black);
+      text-align: left;
+    }
+
+    &--active a {
+      font-weight: bold;
+    }
   }
 }
