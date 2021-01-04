@@ -31,6 +31,7 @@
     width: 100%;
     padding: 1em 0;
     border-top: 1px solid var(--white);
+    transition: all 0.2s linear;
 
     &:hover {
       background-color: var(--black);
