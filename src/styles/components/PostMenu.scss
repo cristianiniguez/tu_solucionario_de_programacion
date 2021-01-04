@@ -1,0 +1,36 @@
+.PostMenu {
+  background-color: var(--light-gray);
+  border: 1px solid var(--gray);
+  border-radius: 0.5em;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+
+  & li {
+    &:not(:last-of-type) {
+      border-bottom: 1px solid var(--gray);
+    }
+
+    & a {
+      color: var(--gray);
+      padding: 1em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      & svg {
+        display: none;
+      }
+
+      &:hover {
+        color: initial;
+        background-color: var(--white);
+
+        svg {
+          display: initial;
+        }
+      }
+    }
+  }
+}
