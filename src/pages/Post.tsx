@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { RouteComponentProps, Link } from 'react-router-dom';
 
 import { PostsContext } from '../context/PostsContext';
+import Seo from '../components/Seo';
 import PostMenu from '../components/PostMenu';
 import Spinner from '../components/Spinner';
 import Fatal from '../components/Fatal';
@@ -23,21 +24,24 @@ const Post = ({ match }: RouteComponentProps<TParams>) => {
   if (!matchedPost) return <NotFound />;
 
   return (
-    <div className='Post'>
-      <section className='Post__hero'>
-        <div className='container'>
-          <p className='Post__path'>
-            <Link className='Post__subject' to={`/subjects/${matchedPost.subject}`}>
-              <code>{matchedPost.subject.toUpperCase()}</code>
-            </Link>
-            {' > '}
-            <code className='Post__title'>{matchedPost.title}</code>
-          </p>
-          <p>{matchedPost.description}</p>
-          <PostMenu post={matchedPost} />
-        </div>
-      </section>
-    </div>
+    <>
+      <Seo title={matchedPost.title} description={matchedPost.description} />
+      <div className='Post'>
+        <section className='Post__hero'>
+          <div className='container'>
+            <p className='Post__path'>
+              <Link className='Post__subject' to={`/subjects/${matchedPost.subject}`}>
+                <code>{matchedPost.subject.toUpperCase()}</code>
+              </Link>
+              {' > '}
+              <code className='Post__title'>{matchedPost.title}</code>
+            </p>
+            <p>{matchedPost.description}</p>
+            <PostMenu post={matchedPost} />
+          </div>
+        </section>
+      </div>
+    </>
   );
 };
 

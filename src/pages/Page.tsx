@@ -5,6 +5,7 @@ import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import Markdown from 'markdown-to-jsx';
 import classnames from 'classnames';
 
+import Seo from '../components/Seo';
 import PageContent from '../components/PageContent';
 import Spinner from '../components/Spinner';
 import Fatal from '../components/Fatal';
@@ -33,40 +34,43 @@ const Page = ({ match }: RouteComponentProps<TParams>) => {
   if (!matchedPost || !matchedPage) return <NotFound />;
 
   return (
-    <div className={classnames({ Page: true, 'Page--shown': shown })}>
-      <aside className='Page__aside'>
-        <div className='Page__controls'>
-          <Link className='Page__post-title' to={`/post/${matchedPost.NO_ID_FIELD}`}>
-            {matchedPost.title}
-          </Link>
-          <FontAwesomeIcon
-            className='Page__icon'
-            icon={shown ? faArrowLeft : faArrowRight}
-            onClick={() => setShown(!shown)}
-          />
-        </div>
-        <ol className='Page__tablist'>
-          {matchedPost.pages.map((page, i) => (
-            <li
-              key={i}
-              className={classnames({
-                Page__tab: true,
-                'Page__tab--active': i === parseInt(pageIndex),
-              })}
-            >
-              <Link to={`/post/${postId}/${i}`}>
-                {shown ? <Markdown>{page.title}</Markdown> : <span>{i}</span>}
-              </Link>
-            </li>
-          ))}
-        </ol>
-      </aside>
-      <section className='Page__section'>
-        <div className='container'>
-          <PageContent pagePath={matchedPage.path} language={matchedPost.subject} />
-        </div>
-      </section>
-    </div>
+    <>
+      <Seo title={matchedPage.title} description={`${matchedPost.title} - ${matchedPage.title}`} />
+      <div className={classnames({ Page: true, 'Page--shown': shown })}>
+        <aside className='Page__aside'>
+          <div className='Page__controls'>
+            <Link className='Page__post-title' to={`/post/${matchedPost.NO_ID_FIELD}`}>
+              {matchedPost.title}
+            </Link>
+            <FontAwesomeIcon
+              className='Page__icon'
+              icon={shown ? faArrowLeft : faArrowRight}
+              onClick={() => setShown(!shown)}
+            />
+          </div>
+          <ol className='Page__tablist'>
+            {matchedPost.pages.map((page, i) => (
+              <li
+                key={i}
+                className={classnames({
+                  Page__tab: true,
+                  'Page__tab--active': i === parseInt(pageIndex),
+                })}
+              >
+                <Link to={`/post/${postId}/${i}`}>
+                  {shown ? <Markdown>{page.title}</Markdown> : <span>{i}</span>}
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </aside>
+        <section className='Page__section'>
+          <div className='container'>
+            <PageContent pagePath={matchedPage.path} language={matchedPost.subject} />
+          </div>
+        </section>
+      </div>
+    </>
   );
 };
 

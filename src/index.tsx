@@ -8,11 +8,9 @@ import firebaseConfig from './config/firebase';
 import './styles/index.scss';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-      <App />
-    </FirebaseAppProvider>
-  </React.StrictMode>,
+  <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+    <App />
+  </FirebaseAppProvider>,
   document.getElementById('root'),
 );
 
