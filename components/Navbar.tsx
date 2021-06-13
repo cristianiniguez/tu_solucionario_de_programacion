@@ -5,29 +5,25 @@ import classNames from 'classnames';
 
 import styles from '@/styles/components/Navbar.module.scss';
 
-const NavbarLink: FC<{ href: string; onClick: () => void }> = ({ children, href, onClick }) => (
-  <li>
-    <Link {...{ href, onClick }}>
-      <a>{children}</a>
-    </Link>
-  </li>
-);
+const links = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Materias', href: '/subjects' },
+  { label: 'Acerca de', href: '/about' },
+];
 
 const Navbar: FC = () => {
   const [active, setActive] = useState(false);
 
   return (
-    <nav className={classNames(styles.navbar, { [styles['Navbar--active']]: active })}>
+    <nav className={classNames(styles.navbar, { [styles['navbar--active']]: active })}>
       <ul>
-        <NavbarLink href='/' onClick={() => setActive(false)}>
-          Inicio
-        </NavbarLink>
-        <NavbarLink href='/subjects' onClick={() => setActive(false)}>
-          Materias
-        </NavbarLink>
-        <NavbarLink href='/about' onClick={() => setActive(false)}>
-          Acerca de
-        </NavbarLink>
+        {links.map(({ label, href }) => (
+          <li key={label}>
+            <Link href={href}>
+              <a onClick={() => setActive(false)}>{label}</a>
+            </Link>
+          </li>
+        ))}
       </ul>
       <button type='button' onClick={() => setActive(!active)}>
         <FaBars />
