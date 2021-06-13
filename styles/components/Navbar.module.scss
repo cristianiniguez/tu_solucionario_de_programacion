@@ -1,3 +1,5 @@
+@import '../globals';
+
 .navbar {
   position: relative;
   height: 100%;
@@ -13,7 +15,7 @@
     width: 100px;
     top: 100%;
     right: 0;
-    border: 1px solid var(--white);
+    border: 1px solid $white;
     border-top: none;
     border-radius: 0 0 1em 1em;
     background-color: rgba(0, 0, 0, 0.5);
@@ -30,16 +32,16 @@
     justify-content: center;
     width: 100%;
     padding: 1em 0;
-    border-top: 1px solid var(--white);
+    border-top: 1px solid $white;
     transition: all 0.2s linear;
 
     &:hover {
-      background-color: var(--black);
+      background-color: $black;
     }
   }
 
   button {
-    color: var(--gray);
+    color: $gray;
     background-color: transparent;
     font-size: 1.2em;
     font-weight: bold;
@@ -53,12 +55,12 @@
     }
 
     button {
-      color: var(--white);
+      color: $white;
     }
   }
 }
 
-@media screen and (min-width: 768px) {
+@include md {
   .navbar {
     ul {
       position: static;

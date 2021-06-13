@@ -1,22 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap');
-
-:root {
-  --black: #212121;
-  --white: white;
-  --gray: gray;
-  --light-gray: lightgray;
-  --blue: #003ea2;
-  --yellow: #cece00;
-  --red: #bf0000;
-  --green: #007730;
-}
+@import 'globals';
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: $font-primary;
 }
 
 a {
@@ -25,7 +11,7 @@ a {
 }
 
 code {
-  font-family: 'Source Code Pro', monospace;
+  font-family: $font-code;
 }
 
 ul.normalized {
@@ -41,25 +27,18 @@ ul.normalized {
 
 .text {
   &--red {
-    color: var(--red);
+    color: $red;
   }
 
   &--blue {
-    color: var(--blue);
+    color: $blue;
   }
 
   &--yellow {
-    color: var(--yellow);
+    color: $yellow;
   }
 
   &--green {
-    color: var(--green);
+    color: $green;
   }
-}
-
-@media screen and (min-width: 480px) {
-}
-@media screen and (min-width: 768px) {
-}
-@media screen and (min-width: 1024px) {
 }

@@ -1,6 +1,8 @@
+@import '../globals';
+
 .header {
-  background-color: var(--black);
-  color: var(--white);
+  background-color: $black;
+  color: $white;
   text-align: center;
   padding: 0 1em;
   display: flex;
