@@ -1,0 +1,17 @@
+@import '../../globals';
+
+.hero {
+  --hero-shadow: rgba($black, 0.5);
+  background: linear-gradient($shadow50, $shadow50), url('/img/hero.jpg');
+  color: $gray;
+  text-align: center;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__title {
+    font-size: 2em;
+  }
+}
