@@ -1,26 +1,28 @@
 import { NextApiHandler } from 'next';
 
-import { TRouter } from '@/types/backend';
 import SubjectsService from '@/services/subjects.service';
 
 const service = new SubjectsService();
 
-const subjectsRouter: TRouter = {
-  GET: async (req, res) => {
-    const subjects = await service.getAll();
-    res.status(200).json({
-      message: 'Subjects listed',
-      subjects,
-    });
-  },
-};
-
 const subjectsApiHandler: NextApiHandler = async (req, res) => {
   try {
-    subjectsRouter[req.method]
-      ? subjectsRouter[req.method](req, res)
-      : res.status(405).json({ message: 'Method not allowed' });
-  } catch (error) {}
+    if (req.method === 'GET') {
+      const subjects = await service.getAll();
+      res.status(200).json({
+        message: 'Subjects listed',
+        subjects,
+      });
+    } else {
+      res.status(405).json({
+        message: 'Method Not Allowed',
+      });
+    }
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({
+      message: 'Internal Server Error',
+    });
+  }
 };
 
 export default subjectsApiHandler;

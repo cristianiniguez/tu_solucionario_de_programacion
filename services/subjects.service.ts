@@ -17,6 +17,7 @@ class SubjectsService {
       description: properties.description.rich_text[0].text.content,
       brandColor: properties.brandColor.rich_text[0].text.content,
       textColor: properties.textColor.rich_text[0].text.content,
+      icon: properties.icon.rich_text[0].text.content,
     }));
   }
 }

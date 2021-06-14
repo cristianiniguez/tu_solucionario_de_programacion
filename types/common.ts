@@ -5,4 +5,5 @@ export type TSubject = {
   description: string;
   brandColor: string;
   textColor: string;
+  icon: string;
 };
