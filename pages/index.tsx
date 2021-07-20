@@ -8,7 +8,7 @@ import Subjects from '@/components/sections/Subjects';
 import { TSubject } from '@/types/common';
 import getHostURL from '@/utils/getHostURL';
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const url = getHostURL('/api/subject');
 
   try {

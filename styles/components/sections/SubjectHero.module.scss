@@ -1,0 +1,20 @@
+@import '../../globals';
+
+.subject-hero {
+  background-color: $light-gray;
+  border-bottom: 1px solid $gray;
+
+  &__container {
+    padding: 2em;
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    font-size: 6em;
+  }
+
+  &__info {
+    margin-left: 1em;
+  }
+}

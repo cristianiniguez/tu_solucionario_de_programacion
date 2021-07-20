@@ -18,11 +18,11 @@ const SubjectAnchor = styled.a<{
   }
 `;
 
-const Subject: FC<TSubject> = ({ name, code, brandColor, textColor, icon }) => {
+const Subject: FC<TSubject> = ({ name, slug, brandColor, textColor, icon }) => {
   const Icon = FaIcons[icon];
 
   return (
-    <Link href={`/subject/${code}`}>
+    <Link href={`/subject/${slug}`}>
       <SubjectAnchor {...{ brandColor, textColor }} className={styles.subject}>
         <Icon className={styles.subject__icon} />
         <h4 className={styles.subject__name}>{name}</h4>
