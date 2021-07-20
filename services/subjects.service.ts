@@ -1,10 +1,8 @@
+import { Page } from '@notionhq/client/build/src/api-types';
+
 import NotionLib from '@/lib/notion';
 import { TSubject } from '@/types/common';
-import {
-  RichTextPropertyValue,
-  RichTextText,
-  TitlePropertyValue,
-} from '@notionhq/client/build/src/api-types';
+import { getPageProperty } from '@/utils/notion';
 
 class SubjectsService {
   private notionDB: NotionLib;
@@ -13,25 +11,32 @@ class SubjectsService {
     this.notionDB = new NotionLib();
   }
 
-  async getAll(): Promise<TSubject[]> {
-    const { results } = await this.notionDB.getSubjectsData();
-    return results.map(({ id, properties }) => {
-      return {
-        id,
-        name: ((properties.name as TitlePropertyValue).title[0] as RichTextText).text.content,
-        slug: ((properties.slug as RichTextPropertyValue).rich_text[0] as RichTextText).text
-          .content,
-        description: (
-          (properties.description as RichTextPropertyValue).rich_text[0] as RichTextText
-        ).text.content,
-        brandColor: ((properties.brandColor as RichTextPropertyValue).rich_text[0] as RichTextText)
-          .text.content,
-        textColor: ((properties.textColor as RichTextPropertyValue).rich_text[0] as RichTextText)
-          .text.content,
-        icon: ((properties.icon as RichTextPropertyValue).rich_text[0] as RichTextText).text
-          .content,
-      };
-    });
+  private getPages() {
+    return this.notionDB.getSubjectsData();
+  }
+
+  private getProperties(page: Page): TSubject {
+    return {
+      id: page.id,
+      name: getPageProperty(page, 'name'),
+      slug: getPageProperty(page, 'slug'),
+      description: getPageProperty(page, 'description'),
+      brandColor: getPageProperty(page, 'brandColor'),
+      textColor: getPageProperty(page, 'textColor'),
+      icon: getPageProperty(page, 'icon'),
+    };
+  }
+
+  public async getAll(): Promise<TSubject[]> {
+    const { results } = await this.getPages();
+    return results.map((page) => this.getProperties(page));
+  }
+
+  public async getBySlug(slug: string): Promise<TSubject | null> {
+    const { results } = await this.getPages();
+
+    const result = results.find((page) => getPageProperty(page, 'slug') === slug);
+    return result ? this.getProperties(result) : null;
   }
 }
 
