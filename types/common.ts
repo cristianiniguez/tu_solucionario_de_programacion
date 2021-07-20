@@ -1,7 +1,7 @@
 export type TSubject = {
   id: string;
   name: string;
-  code: string;
+  slug: string;
   description: string;
   brandColor: string;
   textColor: string;
