@@ -12,7 +12,7 @@ class SubjectsService {
   }
 
   private getPages() {
-    return this.notionDB.getSubjectsData();
+    return this.notionDB.getDbData(NotionLib.db_id);
   }
 
   private getProperties(page: Page): TSubject {

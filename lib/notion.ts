@@ -2,16 +2,16 @@ import { Client } from '@notionhq/client';
 
 class NotionLib {
   private client: Client;
-  private db_id: string;
+
+  public static db_id = process.env.NOTION_DB_ID;
 
   constructor() {
     this.client = new Client({ auth: process.env.NOTION_TOKEN });
-    this.db_id = process.env.NOTION_DB_ID;
   }
 
-  async getSubjectsData() {
-    const dbs = await this.client.databases.query({ database_id: this.db_id });
-    return dbs;
+  async getDbData(database_id: string) {
+    const db = await this.client.databases.query({ database_id });
+    return db;
   }
 }
 
