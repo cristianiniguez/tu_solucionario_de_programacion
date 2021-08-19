@@ -12,5 +12,6 @@ export type TSubject = {
 export type TPost = {
   id: string;
   name: string;
-  slug: string;
+  description: string;
+  papersDb: string;
 };
