@@ -6,13 +6,10 @@ import { getPageProperty } from '@/utils/notion';
 
 class SubjectsService {
   private notionDB: NotionLib;
+  private dbId = NotionLib.db_id;
 
   constructor() {
     this.notionDB = new NotionLib();
-  }
-
-  private getPages() {
-    return this.notionDB.getDbData(NotionLib.db_id);
   }
 
   private getProperties(page: Page): TSubject {
@@ -24,18 +21,21 @@ class SubjectsService {
       brandColor: getPageProperty(page, 'brandColor'),
       textColor: getPageProperty(page, 'textColor'),
       icon: getPageProperty(page, 'icon'),
+      postsDb: getPageProperty(page, 'postsDb'),
     };
   }
 
   public async getAll(): Promise<TSubject[]> {
-    const { results } = await this.getPages();
+    const { results } = await this.notionDB.getDbData(this.dbId);
     return results.map((page) => this.getProperties(page));
   }
 
   public async getBySlug(slug: string): Promise<TSubject | null> {
-    const { results } = await this.getPages();
-
-    const result = results.find((page) => getPageProperty(page, 'slug') === slug);
+    const { results } = await this.notionDB.getDbData(this.dbId, {
+      property: 'slug',
+      text: { equals: slug },
+    });
+    const [result] = results;
     return result ? this.getProperties(result) : null;
   }
 }
