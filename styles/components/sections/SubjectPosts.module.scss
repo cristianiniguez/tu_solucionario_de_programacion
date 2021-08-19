@@ -1,0 +1,23 @@
+@import '../../globals';
+
+.container {
+  padding: 1em 2em;
+}
+
+.grid {
+  @media screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+  }
+}
+
+.message {
+  text-align: center;
+  font-weight: bold;
+  background-color: $light-gray;
+  margin: 2em 0;
+  border: 1px dashed $gray;
+  border-radius: 1em;
+  padding: 1em;
+}

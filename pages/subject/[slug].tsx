@@ -4,20 +4,27 @@ import axios from 'axios';
 
 import Layout from '@/components/Layout';
 import SubjectHero from '@/components/sections/SubjectHero';
+import SubjectPosts from '@/components/sections/SubjectPosts';
 
 import getHostURL from '@/utils/getHostURL';
-import { TSubject } from '@/types/common';
+import { TPost, TSubject } from '@/types/common';
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { slug } = ctx.params;
-  const url = getHostURL(`/api/subject/${slug}`);
 
   try {
-    const response = await axios.get(url);
+    const {
+      data: { subject },
+    } = await axios.get(getHostURL(`/api/subject/${slug}`));
+
+    const {
+      data: { posts },
+    } = await axios.get(getHostURL(`/api/post?db=${subject.postsDb}`));
 
     return {
       props: {
-        subject: response.data.subject,
+        subject,
+        posts,
         error: null,
       },
     };
@@ -34,16 +41,18 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
 type SubjectPageProps = {
   subject?: TSubject;
+  posts?: TPost[];
   error?: string;
 };
 
-const SubjectPage: FC<SubjectPageProps> = ({ subject, error }) => {
+const SubjectPage: FC<SubjectPageProps> = ({ subject, posts, error }) => {
   return (
     <Layout>
       <main>
         {error || !subject ? null : (
           <>
             <SubjectHero {...subject} />
+            <SubjectPosts posts={posts} />
           </>
         )}
       </main>
