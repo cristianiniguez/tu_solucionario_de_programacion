@@ -18,7 +18,7 @@ const Layout: FC<LayoutProps> = ({ children, title, description }) => {
       <Head>
         <title>{title ? `${title} | ${siteTitle}` : siteTitle}</title>
         <meta name='description' content={description || 'Posts de programación para tí'} />
-        <link rel='icon' href='/img/favicon.png' type='image/png' />
+        <link rel='icon' href='/img/favicon.svg' />
       </Head>
       <div className={styles.layout}>
         <Header />
