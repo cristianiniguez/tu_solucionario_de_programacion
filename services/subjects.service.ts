@@ -6,10 +6,11 @@ import { getPageProperty } from '@/utils/notion';
 
 class SubjectsService {
   private notionDB: NotionLib;
-  private dbId = NotionLib.db_id;
+  private dbId: string;
 
   constructor() {
     this.notionDB = new NotionLib();
+    this.dbId = NotionLib.subjects_db_id;
   }
 
   private getProperties(page: Page): TSubject {
@@ -21,7 +22,6 @@ class SubjectsService {
       brandColor: getPageProperty(page, 'brandColor'),
       textColor: getPageProperty(page, 'textColor'),
       icon: getPageProperty(page, 'icon'),
-      postsDb: getPageProperty(page, 'postsDb'),
     };
   }
 

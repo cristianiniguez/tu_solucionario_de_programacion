@@ -6,7 +6,6 @@ export type TSubject = {
   brandColor: string;
   textColor: string;
   icon: string;
-  postsDb: string;
 };
 
 export type TPost = {

@@ -4,7 +4,8 @@ import { Filter } from '@notionhq/client/build/src/api-types';
 class NotionLib {
   private client: Client;
 
-  public static db_id = process.env.NOTION_DB_ID;
+  public static subjects_db_id = process.env.NOTION_SUBJECTS_DB_ID;
+  public static posts_db_id = process.env.NOTION_POSTS_DB_ID;
 
   constructor() {
     this.client = new Client({ auth: process.env.NOTION_TOKEN });

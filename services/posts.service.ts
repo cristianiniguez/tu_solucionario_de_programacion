@@ -8,13 +8,9 @@ class PostsService {
   private notionDB: NotionLib;
   private dbId: string;
 
-  constructor(dbId: string) {
+  constructor() {
     this.notionDB = new NotionLib();
-    this.dbId = dbId;
-  }
-
-  private getPosts(subjectId) {
-    return this.notionDB.getDbData(subjectId);
+    this.dbId = NotionLib.posts_db_id;
   }
 
   private getProperties(page: Page): TPost {
@@ -27,7 +23,15 @@ class PostsService {
   }
 
   public async getAll(): Promise<TPost[]> {
-    const { results } = await this.getPosts(this.dbId);
+    const { results } = await this.notionDB.getDbData(this.dbId);
+    return results.map((page) => this.getProperties(page));
+  }
+
+  public async getBySubject(subject: string): Promise<TPost[]> {
+    const { results } = await this.notionDB.getDbData(this.dbId, {
+      property: 'subjects',
+      multi_select: { contains: subject },
+    });
     return results.map((page) => this.getProperties(page));
   }
 
