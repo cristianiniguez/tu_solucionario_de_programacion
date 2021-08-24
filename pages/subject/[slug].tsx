@@ -6,7 +6,7 @@ import Layout from '@/components/Layout';
 import SubjectHero from '@/components/sections/SubjectHero';
 import SubjectPosts from '@/components/sections/SubjectPosts';
 
-import getHostURL from '@/utils/getHostURL';
+import urlFor from '@/utils/urlFor';
 import { TPost, TSubject } from '@/types/common';
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
@@ -15,11 +15,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
     const {
       data: { subject },
-    } = await axios.get(getHostURL(`/api/subject/${slug}`));
+    } = await axios.get(urlFor(`/api/subject/${slug}`));
 
     const {
       data: { posts },
-    } = await axios.get(getHostURL(`/api/post?db=${subject.postsDb}`));
+    } = await axios.get(urlFor(`/api/post?subject=${slug}`));
 
     return {
       props: {

@@ -6,10 +6,10 @@ import Layout from '@/components/Layout';
 import Hero from '@/components/sections/Hero';
 import Subjects from '@/components/sections/Subjects';
 import { TSubject } from '@/types/common';
-import getHostURL from '@/utils/getHostURL';
+import urlFor from '@/utils/urlFor';
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const url = getHostURL('/api/subject');
+  const url = urlFor('/api/subject');
 
   try {
     const response = await axios.get(url);
