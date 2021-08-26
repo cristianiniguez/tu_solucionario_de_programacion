@@ -8,11 +8,10 @@ import { TPost } from '@/types/common';
 import styles from '@/styles/components/PostLink.module.scss';
 
 type PostLinkProps = TPost & {
-  brandColor: string;
-  textColor: string;
+  color: string;
 };
 
-const PostLink: FC<PostLinkProps> = ({ id, name, brandColor, textColor }) => {
+const PostLink: FC<PostLinkProps> = ({ id, name, color }) => {
   return (
     <>
       <Link href={`/post/${id}`}>
@@ -24,9 +23,8 @@ const PostLink: FC<PostLinkProps> = ({ id, name, brandColor, textColor }) => {
 
       <style jsx>{`
         .link:hover {
-          background-color: ${brandColor};
-          color: ${textColor};
-          border-color: ${brandColor};
+          border-color: ${color};
+          color: ${color};
         }
       `}</style>
     </>

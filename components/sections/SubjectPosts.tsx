@@ -12,7 +12,7 @@ type SubjectPostsProps = {
 };
 
 const SubjectPosts: FC<SubjectPostsProps> = ({ posts }) => {
-  const { brandColor, textColor } = useContext(SubjectContext);
+  const { brandColor } = useContext(SubjectContext);
 
   return (
     <section className='Subject__posts'>
@@ -22,7 +22,7 @@ const SubjectPosts: FC<SubjectPostsProps> = ({ posts }) => {
             <h2>Posts</h2>
             <div className={styles.grid}>
               {posts.map((post) => (
-                <PostLink key={post.id} {...{ ...post, brandColor, textColor }} />
+                <PostLink key={post.id} {...post} color={brandColor} />
               ))}
             </div>
           </>
