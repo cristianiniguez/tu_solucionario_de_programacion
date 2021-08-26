@@ -8,6 +8,7 @@ import SubjectPosts from '@/components/sections/SubjectPosts';
 
 import urlFor from '@/utils/urlFor';
 import { TPost, TSubject } from '@/types/common';
+import SubjectContext from '@/context/SubjectContext';
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { slug } = ctx.params;
@@ -50,10 +51,10 @@ const SubjectPage: FC<SubjectPageProps> = ({ subject, posts, error }) => {
     <Layout>
       <main>
         {error || !subject ? null : (
-          <>
+          <SubjectContext.Provider value={subject}>
             <SubjectHero {...subject} />
             <SubjectPosts posts={posts} />
-          </>
+          </SubjectContext.Provider>
         )}
       </main>
     </Layout>

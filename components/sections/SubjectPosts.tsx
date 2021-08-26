@@ -1,8 +1,9 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import classNames from 'classnames';
 
-import { TPost } from '@/types/common';
 import PostLink from '../PostLink';
+import { TPost } from '@/types/common';
+import SubjectContext from '@/context/SubjectContext';
 
 import styles from '@/styles/components/sections/SubjectPosts.module.scss';
 
@@ -11,6 +12,8 @@ type SubjectPostsProps = {
 };
 
 const SubjectPosts: FC<SubjectPostsProps> = ({ posts }) => {
+  const { brandColor, textColor } = useContext(SubjectContext);
+
   return (
     <section className='Subject__posts'>
       <div className={classNames('container', styles.container)}>
@@ -19,7 +22,7 @@ const SubjectPosts: FC<SubjectPostsProps> = ({ posts }) => {
             <h2>Posts</h2>
             <div className={styles.grid}>
               {posts.map((post) => (
-                <PostLink key={post.id} {...post} />
+                <PostLink key={post.id} {...{ ...post, brandColor, textColor }} />
               ))}
             </div>
           </>
