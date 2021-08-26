@@ -39,11 +39,6 @@ class PostsService {
     const post = await this.notionDB.getPageData(id);
     return post ? this.getProperties(post) : null;
   }
-
-  public async test() {
-    const post = await this.notionDB.getPageData('bebc5f51-6529-4dd9-a823-a69d2389f4ee');
-    return post;
-  }
 }
 
 export default PostsService;
