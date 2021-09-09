@@ -14,3 +14,9 @@ export type TPost = {
   description: string;
   papersDb: string;
 };
+
+export type TPaper = {
+  id: string;
+  name: string;
+  title: string;
+}

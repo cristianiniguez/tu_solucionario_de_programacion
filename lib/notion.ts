@@ -1,5 +1,5 @@
 import { Client } from '@notionhq/client';
-import { Filter } from '@notionhq/client/build/src/api-types';
+import { Filter, Sort } from '@notionhq/client/build/src/api-types';
 
 class NotionLib {
   private client: Client;
@@ -11,8 +11,8 @@ class NotionLib {
     this.client = new Client({ auth: process.env.NOTION_TOKEN });
   }
 
-  async getDbData(database_id: string, filter?: Filter) {
-    const db = await this.client.databases.query({ database_id, filter });
+  async getDbData(database_id: string, filter?: Filter, sorts?: Sort[]) {
+    const db = await this.client.databases.query({ database_id, filter, sorts });
     return db;
   }
 
