@@ -4,8 +4,10 @@ import axios from 'axios';
 
 import Layout from '@/components/Layout';
 import PostHero from '@/components/sections/PostHero';
+import PostPapers from '@/components/sections/PostPapers';
+
 import urlFor from '@/utils/urlFor';
-import { TPost } from '@/types/common';
+import { TPaper, TPost } from '@/types/common';
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { id } = ctx.params;
@@ -15,9 +17,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       data: { post },
     } = await axios.get(urlFor(`/api/post/${id}`));
 
+    const {
+      data: { papers },
+    } = await axios.get(urlFor(`/api/paper?db=${post.papersDb}`));
+
     return {
       props: {
         post,
+        papers,
         error: null,
       },
     };
@@ -26,6 +33,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     return {
       props: {
         post: null,
+        papers: null,
         error: error.message,
       },
     };
@@ -34,13 +42,21 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
 type PostPageProps = {
   post?: TPost;
+  papers?: TPaper[];
   error?: string;
 };
 
-const PostPage: FC<PostPageProps> = ({ post, error }) => {
+const PostPage: FC<PostPageProps> = ({ post, papers, error }) => {
   return (
     <Layout>
-      <main>{error || !post ? null : <PostHero {...post} />}</main>
+      <main>
+        {error || !post ? null : (
+          <>
+            <PostHero {...post} />
+            <PostPapers papers={papers} />
+          </>
+        )}
+      </main>
     </Layout>
   );
 };
