@@ -5,6 +5,7 @@ import axios from 'axios';
 import Layout from '@/components/Layout';
 import PostHero from '@/components/sections/PostHero';
 import PostPapers from '@/components/sections/PostPapers';
+import PostContext from '@/context/PostContext';
 
 import urlFor from '@/utils/urlFor';
 import { TPaper, TPost } from '@/types/common';
@@ -51,10 +52,10 @@ const PostPage: FC<PostPageProps> = ({ post, papers, error }) => {
     <Layout>
       <main>
         {error || !post ? null : (
-          <>
+          <PostContext.Provider value={post}>
             <PostHero {...post} />
             <PostPapers papers={papers} />
-          </>
+          </PostContext.Provider>
         )}
       </main>
     </Layout>
