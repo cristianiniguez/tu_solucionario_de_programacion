@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import Link from 'next/link';
+import ReactMarkdown from 'react-markdown';
 import { FaEye } from 'react-icons/fa';
 
 import { TPaper } from '@/types/common';
@@ -18,7 +19,7 @@ const PostPapers: FC<PostPapersProps> = ({ papers }) => {
             <li key={paper.id} className={styles.item}>
               <Link href={paper.id}>
                 <a className={styles.link}>
-                  <span>{paper.title}</span>
+                  <ReactMarkdown>{paper.title}</ReactMarkdown>
                   <FaEye />
                 </a>
               </Link>

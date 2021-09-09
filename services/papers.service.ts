@@ -18,6 +18,7 @@ class PapersService {
       id: page.id,
       name: getPageProperty(page, 'name'),
       title: getPageProperty(page, 'title'),
+      position: getPageProperty(page, 'position'),
     };
   }
 

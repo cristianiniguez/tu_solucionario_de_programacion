@@ -19,4 +19,5 @@ export type TPaper = {
   id: string;
   name: string;
   title: string;
-}
+  position: number;
+};

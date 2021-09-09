@@ -1,6 +1,6 @@
 import { Page, RichTextText } from '@notionhq/client/build/src/api-types';
 
-export const getPageProperty = (page: Page, property: string): string | null => {
+export const getPageProperty = (page: Page, property: string): any => {
   const value = page.properties[property];
 
   if (!value) {
@@ -13,8 +13,21 @@ export const getPageProperty = (page: Page, property: string): string | null => 
       return text.content;
     }
     case 'rich_text': {
-      const { text } = value.rich_text[0] as RichTextText;
-      return text.content;
+      const text = value.rich_text
+        .map(({ plain_text, annotations }) => {
+          let text_part = plain_text;
+
+          if (annotations.code) {
+            text_part = `\`${text_part}\``;
+          }
+
+          return text_part;
+        })
+        .join('');
+      return text;
+    }
+    case 'number': {
+      return value.number;
     }
     default:
       return null;

@@ -19,7 +19,11 @@
   align-items: center;
   transition: all 0.1s ease-in;
 
-  & svg {
+  p {
+    margin: 0;
+  }
+
+  svg {
     opacity: 0;
     transition: all 0.1s ease-in;
   }
