@@ -20,6 +20,11 @@ class NotionLib {
     const page = await this.client.pages.retrieve({ page_id });
     return page;
   }
+
+  async getPageContent(page_id: string) {
+    const content = await this.client.blocks.children.list({ block_id: page_id });
+    return content;
+  }
 }
 
 export default NotionLib;

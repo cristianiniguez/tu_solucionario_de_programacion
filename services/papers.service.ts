@@ -1,8 +1,8 @@
 import { Page } from '@notionhq/client/build/src/api-types';
 
 import NotionLib from '@/lib/notion';
-import { TPaper } from '@/types/common';
-import { getPageProperty } from '@/utils/notion';
+import { TPaper, TPaperWithContent } from '@/types/common';
+import { getPageContent, getPageProperty } from '@/utils/notion';
 
 class PapersService {
   private notionDB: NotionLib;
@@ -29,9 +29,12 @@ class PapersService {
     return results.map((page) => this.getProperties(page));
   }
 
-  public async getById(id: string): Promise<TPaper | null> {
+  public async getById(id: string): Promise<TPaperWithContent | null> {
     const paper = await this.notionDB.getPageData(id);
-    return paper ? this.getProperties(paper) : null;
+    const content = await this.notionDB.getPageContent(paper.id);
+    return paper
+      ? { ...this.getProperties(paper), content: getPageContent(content.results) }
+      : null;
   }
 }
 

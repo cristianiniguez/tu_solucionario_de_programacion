@@ -21,3 +21,7 @@ export type TPaper = {
   title: string;
   position: number;
 };
+
+export type TPaperWithContent = TPaper & {
+  content: string;
+};
