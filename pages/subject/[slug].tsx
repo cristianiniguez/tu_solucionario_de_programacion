@@ -23,39 +23,27 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     } = await axios.get(urlFor(`/api/post?subject=${slug}`));
 
     return {
-      props: {
-        subject,
-        posts,
-        error: null,
-      },
+      props: { subject, posts },
     };
   } catch (error) {
     console.error(error);
-    return {
-      props: {
-        subjects: null,
-        error: error.message,
-      },
-    };
+    return { notFound: true };
   }
 };
 
 type SubjectPageProps = {
-  subject?: TSubject;
-  posts?: TPost[];
-  error?: string;
+  subject: TSubject;
+  posts: TPost[];
 };
 
-const SubjectPage: FC<SubjectPageProps> = ({ subject, posts, error }) => {
+const SubjectPage: FC<SubjectPageProps> = ({ subject, posts }) => {
   return (
     <Layout>
       <main>
-        {error || !subject ? null : (
-          <SubjectContext.Provider value={subject}>
-            <SubjectHero {...subject} />
-            <SubjectPosts posts={posts} />
-          </SubjectContext.Provider>
-        )}
+        <SubjectContext.Provider value={subject}>
+          <SubjectHero {...subject} />
+          <SubjectPosts posts={posts} />
+        </SubjectContext.Provider>
       </main>
     </Layout>
   );

@@ -23,40 +23,27 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     } = await axios.get(urlFor(`/api/paper?db=${post.papersDb}`));
 
     return {
-      props: {
-        post,
-        papers,
-        error: null,
-      },
+      props: { post, papers },
     };
   } catch (error) {
     console.error(error);
-    return {
-      props: {
-        post: null,
-        papers: null,
-        error: error.message,
-      },
-    };
+    return { notFound: true };
   }
 };
 
 type PostPageProps = {
-  post?: TPost;
-  papers?: TPaper[];
-  error?: string;
+  post: TPost;
+  papers: TPaper[];
 };
 
-const PostPage: FC<PostPageProps> = ({ post, papers, error }) => {
+const PostPage: FC<PostPageProps> = ({ post, papers }) => {
   return (
     <Layout>
       <main>
-        {error || !post ? null : (
-          <PostContext.Provider value={post}>
-            <PostHero {...post} />
-            <PostPapers papers={papers} />
-          </PostContext.Provider>
-        )}
+        <PostContext.Provider value={post}>
+          <PostHero {...post} />
+          <PostPapers papers={papers} />
+        </PostContext.Provider>
       </main>
     </Layout>
   );
