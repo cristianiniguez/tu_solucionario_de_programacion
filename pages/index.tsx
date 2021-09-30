@@ -12,21 +12,17 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const url = urlFor('/api/subject');
 
   try {
-    const response = await axios.get(url);
+    const {
+      data: { subjects },
+    } = await axios.get(url);
 
     return {
-      props: {
-        subjects: response.data.subjects,
-        error: null,
-      },
+      props: { subjects, error: null },
     };
   } catch (error) {
     console.error(error);
     return {
-      props: {
-        subjects: null,
-        error: error.message,
-      },
+      props: { subjects: null, error: error.message },
     };
   }
 };
