@@ -1,0 +1,92 @@
+@import '../globals';
+
+.root {
+  width: 48px;
+  text-align: center;
+  border-right: 1px solid $gray;
+  box-shadow: 1px 0 1px rgba(0, 0, 0, 0.3);
+
+  .controls {
+    font-weight: bold;
+    border-bottom: 1px solid $gray;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .post-title {
+    display: none;
+    text-align: left;
+  }
+
+  .icon {
+    cursor: pointer;
+  }
+
+  .tablist {
+    list-style: none;
+    padding: 1em 0;
+    margin: 0;
+  }
+
+  .tab {
+    padding: 1em 0;
+    display: flex;
+    justify-content: center;
+
+    a {
+      width: 32px;
+      height: 32px;
+      background-color: $light-gray;
+      color: $white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &--active a {
+      background-color: $black;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .section {
+    padding: 1em 2em;
+
+    h1 {
+      font-size: 2em;
+    }
+  }
+
+  &--shown {
+    width: 240px;
+    text-align-last: left;
+  }
+
+  &--shown .post-title {
+    display: block;
+  }
+
+  &--shown .tab {
+    justify-content: start;
+    padding: 1em;
+
+    a {
+      width: unset;
+      height: unset;
+      border-radius: 0;
+      background-color: transparent;
+      color: $black;
+      text-align: left;
+    }
+
+    &--active a {
+      font-weight: bold;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+.root {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  flex-grow: 1;
+  grid-auto-rows: 100%;
+}
