@@ -1,12 +1,14 @@
 import PaperAside from './PaperAside';
+import PaperContent from './PaperContent';
 
 import styles from '../../styles/components/PaperView.module.scss';
 
 const PaperView = () => {
   return (
-    <section className={styles.root}>
+    <div className={styles.root}>
       <PaperAside />
-    </section>
+      <PaperContent />
+    </div>
   );
 };
 
