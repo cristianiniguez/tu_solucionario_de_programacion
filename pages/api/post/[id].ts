@@ -18,7 +18,7 @@ const postApiHandler: NextApiHandler = async (req, res) => {
       }
 
       res.status(200).json({
-        message: 'Subject listed',
+        message: 'Post listed',
         post,
       });
     } else {
