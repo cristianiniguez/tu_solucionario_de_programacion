@@ -11,6 +11,9 @@
     "dev": "turbo dev",
     "build": "turbo build"
   },
+  "devDependencies": {
+    "turbo": "^1.5.6"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cristianiniguez/tu_solucionario_de_programacion.git"
@@ -20,8 +23,5 @@
   "bugs": {
     "url": "https://github.com/cristianiniguez/tu_solucionario_de_programacion/issues"
   },
-  "homepage": "https://tusolucionariodeprogramacion.web.app",
-  "devDependencies": {
-    "turbo": "^1.5.6"
-  }
+  "homepage": "https://tusolucionariodeprogramacion.web.app"
 }
