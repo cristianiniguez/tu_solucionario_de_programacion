@@ -1,14 +1,15 @@
-import { FunctionComponent } from 'react';
-
 import Header from './Header';
 import Footer from './Footer';
 import '../styles/components/Layout.scss';
+import { Outlet } from 'react-router-dom';
 
-const Layout: FunctionComponent = ({ children }) => {
+const Layout = () => {
   return (
     <div className='Layout'>
       <Header />
-      <main>{children}</main>
+      <main>
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );

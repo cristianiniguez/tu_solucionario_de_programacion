@@ -1,31 +1,27 @@
-import { useContext } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useParams } from 'react-router-dom';
 
-import { PostsContext } from '../context/PostsContext';
 import Seo from '../components/Seo';
 import PostLink from '../components/PostLink';
 import Spinner from '../components/Spinner';
 import Fatal from '../components/Fatal';
 import NotFound from './NotFound';
+import usePosts from '../hooks/usePosts';
 
 import { subjects } from '../data/subjects';
 import '../styles/pages/Subject.scss';
 
-type TParams = {
-  endpoint: string | undefined;
-};
-
-const Subject = ({ match }: RouteComponentProps<TParams>) => {
-  const matchedSubject = subjects.find((sub) => sub.endpoint === match.params.endpoint);
-  const { data, status, error } = useContext(PostsContext)();
+const Subject = () => {
+  const params = useParams();
+  const matchedSubject = subjects.find((sub) => sub.endpoint === params.endpoint);
+  const { data: posts, status, error } = usePosts();
 
   if (!matchedSubject) return <NotFound />;
   if (status === 'loading') return <Spinner />;
   if (error) return <Fatal error={error} />;
 
   const { name, description, icon, endpoint, brandColor } = matchedSubject;
-  const matchedPosts = data.filter((post) => post.subject === endpoint);
+  const matchedPosts = posts.filter((post) => post.subject === endpoint);
 
   return (
     <>

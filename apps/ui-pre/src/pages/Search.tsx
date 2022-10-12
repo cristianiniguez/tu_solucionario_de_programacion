@@ -1,22 +1,16 @@
-import { useContext, useMemo } from 'react';
-import { RouteComponentProps, Link } from 'react-router-dom';
-
-import { PostsContext } from '../context/PostsContext';
+import { useMemo } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import Seo from '../components/Seo';
 import Spinner from '../components/Spinner';
 import Fatal from '../components/Fatal';
 import PostLink from '../components/PostLink';
 import '../styles/pages/Search.scss';
 import { getSubjectByEndpoint } from '../data/subjects';
+import usePosts from '../hooks/usePosts';
 
-type TParams = {
-  input: string;
-};
-
-const Search = ({ match }: RouteComponentProps<TParams>) => {
-  const { input } = match.params;
-
-  const { data: postsData, status, error } = useContext(PostsContext)();
+const Search = () => {
+  const { input = '' } = useParams();
+  const { data: postsData, status, error } = usePosts();
 
   const filteredPosts = useMemo(() => {
     return postsData?.filter((post) => post.title.match(new RegExp(input, 'i'))) || [];

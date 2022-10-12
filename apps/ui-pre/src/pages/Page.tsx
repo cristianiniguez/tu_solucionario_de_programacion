@@ -1,5 +1,5 @@
-import { useContext, useState } from 'react';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import Markdown from 'markdown-to-jsx';
@@ -10,20 +10,13 @@ import PageContent from '../components/PageContent';
 import Spinner from '../components/Spinner';
 import Fatal from '../components/Fatal';
 import NotFound from './NotFound';
-
-import { PostsContext } from '../context/PostsContext';
+import usePosts from '../hooks/usePosts';
 import '../styles/pages/Page.scss';
 
-type TParams = {
-  postId: string;
-  pageIndex: string;
-};
-
-const Page = ({ match }: RouteComponentProps<TParams>) => {
+const Page = () => {
   const [shown, setShown] = useState<boolean>(false);
-
-  const { postId, pageIndex } = match.params;
-  const { data: postsData, status, error } = useContext(PostsContext)();
+  const { postId, pageIndex = '0' } = useParams();
+  const { data: postsData, status, error } = usePosts();
 
   if (status === 'loading') return <Spinner />;
   if (error) return <Fatal error={error} />;
