@@ -81,6 +81,9 @@ web_modules/
 .cache
 .parcel-cache
 
+# React.js build output
+build
+
 # Next.js build output
 .next
 out
@@ -129,3 +132,6 @@ dist
 
 # docker
 .docker
+
+# firebase
+.firebase
