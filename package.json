@@ -1,20 +1,27 @@
 {
   "name": "tu-solucionario-de-programacion",
+  "description": "Posts de programación para tí",
+  "keywords": [],
   "version": "1.0.0",
   "private": true,
   "workspaces": [
     "apps/*"
   ],
-  "description": "Posts de programación para tí",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cristianiniguez/tu_solucionario_de_programacion.git"
   },
-  "keywords": [],
   "author": "cristianiniguez <felizpc1@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cristianiniguez/tu_solucionario_de_programacion/issues"
   },
-  "homepage": "https://tusolucionariodeprogramacion.web.app"
+  "homepage": "https://tusolucionariodeprogramacion.web.app",
+  "devDependencies": {
+    "turbo": "^1.5.6"
+  }
 }
