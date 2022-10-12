@@ -1,12 +1,10 @@
 import { FunctionComponent, useEffect } from 'react';
 import Markdown from 'markdown-to-jsx';
 import Prism from 'prismjs';
-
 import Spinner from './Spinner';
 import Fatal from './Fatal';
-
-import 'prismjs/themes/prism-tomorrow.css';
 import usePageContent from '../hooks/usePageContent';
+import 'prismjs/themes/prism-tomorrow.css';
 
 type PageContentProps = {
   pagePath: string;
