@@ -7,8 +7,6 @@ type SeoProps = {
 };
 
 const Seo: FunctionComponent<SeoProps> = ({ title, description }) => {
-  console.log(description);
-
   const siteTitle: string = 'Tu Solucionario de Programación';
   const displayTitle: string = title ? `${title} | ${siteTitle}` : siteTitle;
 

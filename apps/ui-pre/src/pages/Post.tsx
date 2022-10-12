@@ -1,7 +1,5 @@
-import { useContext } from 'react';
-import { RouteComponentProps, Link } from 'react-router-dom';
-
-import { PostsContext } from '../context/PostsContext';
+import { Link, useParams } from 'react-router-dom';
+import usePosts from '../hooks/usePosts';
 import Seo from '../components/Seo';
 import PostMenu from '../components/PostMenu';
 import Spinner from '../components/Spinner';
@@ -9,18 +7,14 @@ import Fatal from '../components/Fatal';
 import NotFound from './NotFound';
 import '../styles/pages/Post.scss';
 
-type TParams = {
-  id: string;
-};
-
-const Post = ({ match }: RouteComponentProps<TParams>) => {
-  const postId = match.params.id;
-  const { data, status, error } = useContext(PostsContext)();
+const Post = () => {
+  const { id: postId } = useParams();
+  const { data: posts, status, error } = usePosts();
 
   if (status === 'loading') return <Spinner />;
   if (error) return <Fatal error={error} />;
 
-  const matchedPost = data.find((post) => post.NO_ID_FIELD === postId);
+  const matchedPost = posts.find((post) => post.NO_ID_FIELD === postId);
   if (!matchedPost) return <NotFound />;
 
   return (

@@ -1,17 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { FirebaseAppProvider } from 'reactfire';
-
+import { createRoot } from 'react-dom/client';
+import FirebaseProvider from './providers/FirebaseProvider';
 import App from './routes/App';
 import reportWebVitals from './reportWebVitals';
-import firebaseConfig from './config/firebase';
 import './styles/index.scss';
 
-ReactDOM.render(
-  <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+createRoot(document.getElementById('root') as HTMLElement).render(
+  <FirebaseProvider>
     <App />
-  </FirebaseAppProvider>,
-  document.getElementById('root'),
+  </FirebaseProvider>,
 );
 
 // If you want to start measuring performance in your app, pass a function

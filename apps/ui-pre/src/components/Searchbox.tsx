@@ -1,17 +1,17 @@
-import { useState, useContext, useEffect, useMemo, FormEvent } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useState, useEffect, useMemo, FormEvent } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import usePosts from '../hooks/usePosts';
 
-import { PostsContext } from '../context/PostsContext';
 import { IPost } from '../data/posts';
 import '../styles/components/Searchbox.scss';
 
 const Searchbox = () => {
   const [input, setInput] = useState('');
   const [results, setResults] = useState<IPost[]>([]);
-  const { data: postsData, status, error } = useContext(PostsContext)();
-  const history = useHistory();
+  const { data: postsData, status, error } = usePosts();
+  const navigate = useNavigate();
 
   const filteredPosts = useMemo(() => {
     return postsData?.filter((post) => post.title.match(new RegExp(input, 'i'))) || [];
@@ -23,7 +23,7 @@ const Searchbox = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    history.push(`/search/${input}`);
+    navigate(`/search/${input}`);
     setInput('');
   };
 
