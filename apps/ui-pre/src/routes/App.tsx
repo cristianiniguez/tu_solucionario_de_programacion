@@ -8,7 +8,7 @@ import Subject from '../pages/Subject';
 import Post from '../pages/Post';
 import Page from '../pages/Page';
 import Search from '../pages/Search';
-// import NotFound from '../pages/NotFound';
+import NotFound from '../pages/NotFound';
 
 const router = createBrowserRouter([
   {
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
       { path: '/post/:id', element: <Post /> },
       { path: '/post/:postId/:pageIndex', element: <Page /> },
       { path: '/search/:input', element: <Search /> },
-      // TODO: add not found page
+      { path: '*', element: <NotFound /> },
     ],
   },
 ]);
